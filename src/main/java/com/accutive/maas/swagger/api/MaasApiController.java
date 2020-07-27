@@ -69,7 +69,7 @@ public class MaasApiController implements MaasApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json") && "tampered".equalsIgnoreCase(filename)) {
             try {
-                return new ResponseEntity<AuditLog>(objectMapper.readValue("{\n  \"filename\" : \"" + filename + "\",\n  \"log\" : [ {\n    \"logMessage\" : \"logMessage\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"remoteIpAddress\"\n  }, {\n    \"logMessage\" : \"logMessage\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"remoteIpAddress\"\n  } ],\n  \"isValid\" : false\n}", AuditLog.class), HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+                return new ResponseEntity<AuditLog>(objectMapper.readValue("{\n  \"filename\" : \"" + filename + "\",\n  \"log\" : [ {\n    \"logMessage\" : \"bogus log message\",\n    \"user\" : \"ev1lha><0r\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"bad.guy.vpn.IP\"\n  }, {\n    \"logMessage\" : \"logMessage2\",\n    \"user\" : \"user2\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"4.3.2.1\"\n  } ],\n  \"isValid\" : false\n}", AuditLog.class), HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<AuditLog>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -77,7 +77,7 @@ public class MaasApiController implements MaasApi {
         }
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<AuditLog>(objectMapper.readValue("{\n  \"filename\" : \"" + filename + "\",\n  \"log\" : [ {\n    \"logMessage\" : \"logMessage\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"remoteIpAddress\"\n  }, {\n    \"logMessage\" : \"logMessage\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"remoteIpAddress\"\n  } ],\n  \"isValid\" : true\n}", AuditLog.class), HttpStatus.OK);
+                return new ResponseEntity<AuditLog>(objectMapper.readValue("{\n  \"filename\" : \"" + filename + "\",\n  \"log\" : [ {\n    \"logMessage\" : \"logMessage1\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"1.2.3.4\"\n  }, {\n    \"logMessage\" : \"logMessage2\",\n    \"user\" : \"user2\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"4.3.2.1\"\n  } ],\n  \"isValid\" : true\n}", AuditLog.class), HttpStatus.OK);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<AuditLog>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -91,7 +91,7 @@ public class MaasApiController implements MaasApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<AuditLog>(objectMapper.readValue("{\n  \"filename\" : \"filename\",\n  \"log\" : [ {\n    \"logMessage\" : \"logMessage\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"remoteIpAddress\"\n  }, {\n    \"logMessage\" : \"logMessage\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"remoteIpAddress\"\n  } ],\n  \"isValid\" : true\n}", AuditLog.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<AuditLog>(objectMapper.readValue("{\n  \"filename\" : \"currentlog\",\n  \"log\" : [ {\n    \"logMessage\" : \"logMessage1\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"1.2.3.4\"\n  }, {\n    \"logMessage\" : \"logMessage2\",\n    \"user\" : \"user2\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"4.3.2.1\"\n  } ],\n  \"isValid\" : true\n}", AuditLog.class), HttpStatus.OK);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<AuditLog>(HttpStatus.INTERNAL_SERVER_ERROR);
