@@ -291,10 +291,9 @@ public class MaasApiController implements MaasApi {
     }
 
     public ResponseEntity<List<MaskedData>> maskData(@ApiParam(value = "Input data to be masked" ,required=true )  @Valid @RequestBody List<InputData> body
-,@NotNull @ApiParam(value = "ID of the masking operator to use.", required = true) @Valid @RequestParam(value = "operatorID", required = true) Integer operatorID
-,@ApiParam(value = "MaskLink name to apply to masking operation (may be null)") @Valid @RequestParam(value = "maskLink", required = false) Optional<String> maskLink
-,@ApiParam(value = "Parameters to the masking operation") @Valid @RequestParam(value = "parameters", required = false) Optional<Map<String, String>> parameters
-) {
+            ,@NotNull @ApiParam(value = "ID of the masking operator to use.", required = true) @Valid @RequestParam(value = "operatorID", required = true) Integer operatorID
+            ,@ApiParam(value = "Parameters to the masking operation") @Valid @RequestParam(value = "parameters", required = false) Optional<Map<String, String>> parameters
+    ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {

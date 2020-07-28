@@ -15,13 +15,16 @@ import javax.validation.constraints.*;
  * MaskingConfiguration
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-22T18:25:26.083Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-28T22:30:40.640Z[GMT]")
 public class MaskingConfiguration   {
   @JsonProperty("id")
   private Long id = null;
 
   @JsonProperty("name")
   private String name = null;
+
+  @JsonProperty("descriptino")
+  private String descriptino = null;
 
   @JsonProperty("properties")
   @Valid
@@ -55,7 +58,7 @@ public class MaskingConfiguration   {
    * Get name
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "My Masking Config", value = "")
   
     public String getName() {
     return name;
@@ -63,6 +66,25 @@ public class MaskingConfiguration   {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public MaskingConfiguration descriptino(String descriptino) {
+    this.descriptino = descriptino;
+    return this;
+  }
+
+  /**
+   * Get descriptino
+   * @return descriptino
+  **/
+  @ApiModelProperty(example = "First atttempt at building a masking config", value = "")
+  
+    public String getDescriptino() {
+    return descriptino;
+  }
+
+  public void setDescriptino(String descriptino) {
+    this.descriptino = descriptino;
   }
 
   public MaskingConfiguration properties(List<String> properties) {
@@ -104,12 +126,13 @@ public class MaskingConfiguration   {
     MaskingConfiguration maskingConfiguration = (MaskingConfiguration) o;
     return Objects.equals(this.id, maskingConfiguration.id) &&
         Objects.equals(this.name, maskingConfiguration.name) &&
+        Objects.equals(this.descriptino, maskingConfiguration.descriptino) &&
         Objects.equals(this.properties, maskingConfiguration.properties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, properties);
+    return Objects.hash(id, name, descriptino, properties);
   }
 
   @Override
@@ -119,6 +142,7 @@ public class MaskingConfiguration   {
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    descriptino: ").append(toIndentedString(descriptino)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
     sb.append("}");
     return sb.toString();
