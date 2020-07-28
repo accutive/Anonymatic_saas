@@ -10,7 +10,9 @@ This is an example of building a swagger-enabled server in Java using the Spring
 
 The underlying library integrating swagger to SpringBoot is [springfox](https://github.com/springfox/springfox)  
 
-Start your server as an simple java application  
+Build the project with "mvn clean package"
+
+Start your server as an simple java application with "java -jar target/swagger-spring-1.0.0.jar"
 
 You can view the api documentation in swagger-ui by pointing to  
 http://localhost:8080/  
