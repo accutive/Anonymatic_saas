@@ -1,27 +1,31 @@
 package com.accutive.maas.swagger.model;
 
 import java.util.Objects;
+import com.accutive.maas.swagger.model.MaskValuesInputOperationParameters;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * StopProject
+ * MaskValuesInputOperation
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T22:58:26.886Z[GMT]")
-public class StopProject   {
+public class MaskValuesInputOperation   {
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("result")
-  private String result = null;
+  @JsonProperty("parameters")
+  @Valid
+  private List<MaskValuesInputOperationParameters> parameters = null;
 
-  public StopProject id(Long id) {
+  public MaskValuesInputOperation id(Long id) {
     this.id = id;
     return this;
   }
@@ -30,7 +34,7 @@ public class StopProject   {
    * Get id
    * @return id
   **/
-  @ApiModelProperty(example = "5", value = "")
+  @ApiModelProperty(example = "23", value = "")
   
     public Long getId() {
     return id;
@@ -40,23 +44,31 @@ public class StopProject   {
     this.id = id;
   }
 
-  public StopProject result(String result) {
-    this.result = result;
+  public MaskValuesInputOperation parameters(List<MaskValuesInputOperationParameters> parameters) {
+    this.parameters = parameters;
+    return this;
+  }
+
+  public MaskValuesInputOperation addParametersItem(MaskValuesInputOperationParameters parametersItem) {
+    if (this.parameters == null) {
+      this.parameters = new ArrayList<MaskValuesInputOperationParameters>();
+    }
+    this.parameters.add(parametersItem);
     return this;
   }
 
   /**
-   * Get result
-   * @return result
+   * Get parameters
+   * @return parameters
   **/
   @ApiModelProperty(value = "")
-  
-    public String getResult() {
-    return result;
+      @Valid
+    public List<MaskValuesInputOperationParameters> getParameters() {
+    return parameters;
   }
 
-  public void setResult(String result) {
-    this.result = result;
+  public void setParameters(List<MaskValuesInputOperationParameters> parameters) {
+    this.parameters = parameters;
   }
 
 
@@ -68,23 +80,23 @@ public class StopProject   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    StopProject stopProject = (StopProject) o;
-    return Objects.equals(this.id, stopProject.id) &&
-        Objects.equals(this.result, stopProject.result);
+    MaskValuesInputOperation maskValuesInputOperation = (MaskValuesInputOperation) o;
+    return Objects.equals(this.id, maskValuesInputOperation.id) &&
+        Objects.equals(this.parameters, maskValuesInputOperation.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, result);
+    return Objects.hash(id, parameters);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class StopProject {\n");
+    sb.append("class MaskValuesInputOperation {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    result: ").append(toIndentedString(result)).append("\n");
+    sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }

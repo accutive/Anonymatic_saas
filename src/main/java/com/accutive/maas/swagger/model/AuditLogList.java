@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * AuditLogList
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T01:09:59.127Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T22:58:26.886Z[GMT]")
 public class AuditLogList   {
   @JsonProperty("filename")
   private String filename = null;

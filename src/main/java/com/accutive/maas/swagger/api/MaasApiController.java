@@ -1,30 +1,8 @@
 package com.accutive.maas.swagger.api;
 
-import com.accutive.maas.swagger.model.AuditLog;
-import com.accutive.maas.swagger.model.AuditLogList;
-import com.accutive.maas.swagger.model.Body;
-import com.accutive.maas.swagger.model.Body1;
-import com.accutive.maas.swagger.model.Body2;
-import com.accutive.maas.swagger.model.Discovery;
-import com.accutive.maas.swagger.model.DiscoveryReport;
-import com.accutive.maas.swagger.model.InputData;
-import com.accutive.maas.swagger.model.Job;
-import com.accutive.maas.swagger.model.MaskFile;
-import com.accutive.maas.swagger.model.MaskedData;
-import com.accutive.maas.swagger.model.MaskingConfiguration;
-import com.accutive.maas.swagger.model.MaskingOperation;
-import com.accutive.maas.swagger.model.Masklink;
-import com.accutive.maas.swagger.model.MatchFieldNames;
-import com.accutive.maas.swagger.model.MatchFieldValues;
-import com.accutive.maas.swagger.model.Project;
-import com.accutive.maas.swagger.model.ProjectReport;
-import com.accutive.maas.swagger.model.ProjectReportList;
+import com.accutive.maas.swagger.model.*;
 import org.springframework.core.io.Resource;
-import com.accutive.maas.swagger.model.RunJob;
-import com.accutive.maas.swagger.model.ScanGroup;
-import com.accutive.maas.swagger.model.ServerRestart;
-import com.accutive.maas.swagger.model.ServerStop;
-import com.accutive.maas.swagger.model.StopProject;
+
 import java.util.UUID;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
@@ -290,21 +268,19 @@ public class MaasApiController implements MaasApi {
         return new ResponseEntity<List<ProjectReportList>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<MaskedData>> maskData(@ApiParam(value = "Input data to be masked" ,required=true )  @Valid @RequestBody List<InputData> body
-            ,@NotNull @ApiParam(value = "ID of the masking operator to use.", required = true) @Valid @RequestParam(value = "operatorID", required = true) Integer operatorID
-            ,@ApiParam(value = "Parameters to the masking operation") @Valid @RequestParam(value = "parameters", required = false) Optional<Map<String, String>> parameters
+    public ResponseEntity<MaskedData> maskData(@ApiParam(value = "Masking operation with parameters and data to be masked" ,required=true )  @Valid @RequestBody MaskValuesInput body
     ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<MaskedData>>(objectMapper.readValue("[ {\n  \"replacement\" : \"replacement\"\n}, {\n  \"replacement\" : \"replacement\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<MaskedData>(objectMapper.readValue("{\n  \"maskedData\" : [ \"masked\", \"values\" ]\n}", MaskedData.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<MaskedData>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<MaskedData>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<List<MaskedData>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<MaskedData>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     public ResponseEntity<MaskFile> maskFile(@ApiParam(value = "") @RequestParam(value="maskingConfigID", required=false)  Integer maskingConfigID

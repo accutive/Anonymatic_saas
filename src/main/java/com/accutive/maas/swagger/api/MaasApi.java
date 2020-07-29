@@ -15,6 +15,7 @@ import com.accutive.maas.swagger.model.DiscoveryReport;
 import com.accutive.maas.swagger.model.InputData;
 import com.accutive.maas.swagger.model.Job;
 import com.accutive.maas.swagger.model.MaskFile;
+import com.accutive.maas.swagger.model.MaskValuesInput;
 import com.accutive.maas.swagger.model.MaskedData;
 import com.accutive.maas.swagger.model.MaskingConfiguration;
 import com.accutive.maas.swagger.model.MaskingOperation;
@@ -49,7 +50,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T01:09:59.127Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T22:58:26.886Z[GMT]")
 @Api(value = "maas", description = "the maas API")
 public interface MaasApi {
 
@@ -375,7 +376,7 @@ public interface MaasApi {
 );
 
 
-    @ApiOperation(value = "Masks values in passed array using a given masking operator.", nickname = "maskData", notes = "", response = MaskedData.class, responseContainer = "List", authorizations = {
+    @ApiOperation(value = "Masks values in passed array using a given masking operator.", nickname = "maskData", notes = "", response = MaskedData.class, authorizations = {
         @Authorization(value = "OAuth2", scopes = { 
             @AuthorizationScope(scope = "read", description = "Grants read access"),
             @AuthorizationScope(scope = "write", description = "Grants write access"),
@@ -384,7 +385,7 @@ public interface MaasApi {
 @Authorization(value = "OpenID"),
 @Authorization(value = "api_key")    }, tags={ "masking", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = MaskedData.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "successful operation", response = MaskedData.class),
         @ApiResponse(code = 400, message = "Bad request."),
         @ApiResponse(code = 401, message = "Authorization information is missing or invalid."),
         @ApiResponse(code = 403, message = "Forbidden by license or access control."),
@@ -395,9 +396,7 @@ public interface MaasApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<List<MaskedData>> maskData(@ApiParam(value = "Input data to be masked" ,required=true )  @Valid @RequestBody List<InputData> body
-,@NotNull @ApiParam(value = "ID of the masking operator to use.", required = true) @Valid @RequestParam(value = "operatorID", required = true) Integer operatorID
-,@ApiParam(value = "Parameters to the masking operation") @Valid @RequestParam(value = "parameters", required = false) Optional<Map<String, String>> parameters
+    ResponseEntity<MaskedData> maskData(@ApiParam(value = "Masking operation with parameters and data to be masked" ,required=true )  @Valid @RequestBody MaskValuesInput body
 );
 
 

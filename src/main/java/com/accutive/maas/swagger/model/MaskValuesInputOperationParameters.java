@@ -10,18 +10,18 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * MatchFieldNames
+ * MaskValuesInputOperationParameters
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T22:58:26.886Z[GMT]")
-public class MatchFieldNames   {
+public class MaskValuesInputOperationParameters   {
   @JsonProperty("name")
   private String name = null;
 
-  @JsonProperty("suggestedOperator")
-  private String suggestedOperator = null;
+  @JsonProperty("value")
+  private String value = null;
 
-  public MatchFieldNames name(String name) {
+  public MaskValuesInputOperationParameters name(String name) {
     this.name = name;
     return this;
   }
@@ -30,7 +30,7 @@ public class MatchFieldNames   {
    * Get name
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "mask_link", value = "")
   
     public String getName() {
     return name;
@@ -40,23 +40,23 @@ public class MatchFieldNames   {
     this.name = name;
   }
 
-  public MatchFieldNames suggestedOperator(String suggestedOperator) {
-    this.suggestedOperator = suggestedOperator;
+  public MaskValuesInputOperationParameters value(String value) {
+    this.value = value;
     return this;
   }
 
   /**
-   * Get suggestedOperator
-   * @return suggestedOperator
+   * Get value
+   * @return value
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "myMaskLink", value = "")
   
-    public String getSuggestedOperator() {
-    return suggestedOperator;
+    public String getValue() {
+    return value;
   }
 
-  public void setSuggestedOperator(String suggestedOperator) {
-    this.suggestedOperator = suggestedOperator;
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -68,23 +68,23 @@ public class MatchFieldNames   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MatchFieldNames matchFieldNames = (MatchFieldNames) o;
-    return Objects.equals(this.name, matchFieldNames.name) &&
-        Objects.equals(this.suggestedOperator, matchFieldNames.suggestedOperator);
+    MaskValuesInputOperationParameters maskValuesInputOperationParameters = (MaskValuesInputOperationParameters) o;
+    return Objects.equals(this.name, maskValuesInputOperationParameters.name) &&
+        Objects.equals(this.value, maskValuesInputOperationParameters.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, suggestedOperator);
+    return Objects.hash(name, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MatchFieldNames {\n");
+    sb.append("class MaskValuesInputOperationParameters {\n");
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    suggestedOperator: ").append(toIndentedString(suggestedOperator)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

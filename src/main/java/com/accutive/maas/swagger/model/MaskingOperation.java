@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
  * MaskingOperation
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-28T23:16:06.253Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T22:58:26.886Z[GMT]")
 public class MaskingOperation   {
   @JsonProperty("id")
   private Long id = null;

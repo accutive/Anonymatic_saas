@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -13,28 +15,37 @@ import javax.validation.constraints.*;
  * MaskedData
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-28T23:16:06.253Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T22:58:26.886Z[GMT]")
 public class MaskedData   {
-  @JsonProperty("replacement")
-  private String replacement = null;
+  @JsonProperty("maskedData")
+  @Valid
+  private List<String> maskedData = null;
 
-  public MaskedData replacement(String replacement) {
-    this.replacement = replacement;
+  public MaskedData maskedData(List<String> maskedData) {
+    this.maskedData = maskedData;
+    return this;
+  }
+
+  public MaskedData addMaskedDataItem(String maskedDataItem) {
+    if (this.maskedData == null) {
+      this.maskedData = new ArrayList<String>();
+    }
+    this.maskedData.add(maskedDataItem);
     return this;
   }
 
   /**
-   * Get replacement
-   * @return replacement
+   * Get maskedData
+   * @return maskedData
   **/
   @ApiModelProperty(value = "")
   
-    public String getReplacement() {
-    return replacement;
+    public List<String> getMaskedData() {
+    return maskedData;
   }
 
-  public void setReplacement(String replacement) {
-    this.replacement = replacement;
+  public void setMaskedData(List<String> maskedData) {
+    this.maskedData = maskedData;
   }
 
 
@@ -47,12 +58,12 @@ public class MaskedData   {
       return false;
     }
     MaskedData maskedData = (MaskedData) o;
-    return Objects.equals(this.replacement, maskedData.replacement);
+    return Objects.equals(this.maskedData, maskedData.maskedData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(replacement);
+    return Objects.hash(maskedData);
   }
 
   @Override
@@ -60,7 +71,7 @@ public class MaskedData   {
     StringBuilder sb = new StringBuilder();
     sb.append("class MaskedData {\n");
     
-    sb.append("    replacement: ").append(toIndentedString(replacement)).append("\n");
+    sb.append("    maskedData: ").append(toIndentedString(maskedData)).append("\n");
     sb.append("}");
     return sb.toString();
   }
