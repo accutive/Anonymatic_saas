@@ -13,13 +13,10 @@ import javax.validation.constraints.*;
  * AuditLogList
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-28T23:16:06.253Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T01:09:59.127Z[GMT]")
 public class AuditLogList   {
   @JsonProperty("filename")
   private String filename = null;
-
-  @JsonProperty("timestamp")
-  private String timestamp = null;
 
   public AuditLogList filename(String filename) {
     this.filename = filename;
@@ -40,25 +37,6 @@ public class AuditLogList   {
     this.filename = filename;
   }
 
-  public AuditLogList timestamp(String timestamp) {
-    this.timestamp = timestamp;
-    return this;
-  }
-
-  /**
-   * Get timestamp
-   * @return timestamp
-  **/
-  @ApiModelProperty(value = "")
-  
-    public String getTimestamp() {
-    return timestamp;
-  }
-
-  public void setTimestamp(String timestamp) {
-    this.timestamp = timestamp;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -69,13 +47,12 @@ public class AuditLogList   {
       return false;
     }
     AuditLogList auditLogList = (AuditLogList) o;
-    return Objects.equals(this.filename, auditLogList.filename) &&
-        Objects.equals(this.timestamp, auditLogList.timestamp);
+    return Objects.equals(this.filename, auditLogList.filename);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filename, timestamp);
+    return Objects.hash(filename);
   }
 
   @Override
@@ -84,7 +61,6 @@ public class AuditLogList   {
     sb.append("class AuditLogList {\n");
     
     sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
-    sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("}");
     return sb.toString();
   }
