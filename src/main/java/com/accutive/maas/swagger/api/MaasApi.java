@@ -49,7 +49,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-28T22:36:42.104Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T01:01:36.804Z[GMT]")
 @Api(value = "maas", description = "the maas API")
 public interface MaasApi {
 
@@ -74,6 +74,27 @@ public interface MaasApi {
         method = RequestMethod.GET)
     ResponseEntity<AuditLog> getAuditLogByFileName(@ApiParam(value = "Filename of the audit file to return.",required=true) @PathVariable("filename") String filename
 );
+
+
+    @ApiOperation(value = "Return a list of audit log filenames.", nickname = "getAuditLogList", notes = "", response = AuditLogList.class, responseContainer = "List", authorizations = {
+        @Authorization(value = "OAuth2", scopes = { 
+            @AuthorizationScope(scope = "read", description = "Grants read access"),
+            @AuthorizationScope(scope = "write", description = "Grants write access"),
+            @AuthorizationScope(scope = "admin", description = "Grants access to admin operations")
+            }),
+@Authorization(value = "OpenID"),
+@Authorization(value = "api_key")    }, tags={ "admin", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation", response = AuditLogList.class, responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad request."),
+        @ApiResponse(code = 401, message = "Authorization information is missing or invalid."),
+        @ApiResponse(code = 403, message = "Forbidden by license or access control."),
+        @ApiResponse(code = 404, message = "No Audit logs found."),
+        @ApiResponse(code = 500, message = "Unexpected server error.") })
+    @RequestMapping(value = "/maas/admin/auditlog/list",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    ResponseEntity<List<AuditLogList>> getAuditLogList();
 
 
     @ApiOperation(value = "Get current audit log", nickname = "getCurrentAuditLog", notes = "", response = AuditLog.class, authorizations = {
@@ -205,27 +226,6 @@ public interface MaasApi {
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     ResponseEntity<List<Job>> getJobs();
-
-
-    @ApiOperation(value = "Return a list of audit log filenames.", nickname = "getMAuditLogList", notes = "", response = AuditLogList.class, responseContainer = "List", authorizations = {
-        @Authorization(value = "OAuth2", scopes = { 
-            @AuthorizationScope(scope = "read", description = "Grants read access"),
-            @AuthorizationScope(scope = "write", description = "Grants write access"),
-            @AuthorizationScope(scope = "admin", description = "Grants access to admin operations")
-            }),
-@Authorization(value = "OpenID"),
-@Authorization(value = "api_key")    }, tags={ "admin", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = AuditLogList.class, responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad request."),
-        @ApiResponse(code = 401, message = "Authorization information is missing or invalid."),
-        @ApiResponse(code = 403, message = "Forbidden by license or access control."),
-        @ApiResponse(code = 404, message = "No Audit logs found."),
-        @ApiResponse(code = 500, message = "Unexpected server error.") })
-    @RequestMapping(value = "/maas/admin/auditlog/list",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<List<AuditLogList>> getMAuditLogList();
 
 
     @ApiOperation(value = "Return a list of masking configurations.", nickname = "getMaskingConfigurationsList", notes = "", response = MaskingConfiguration.class, responseContainer = "List", authorizations = {

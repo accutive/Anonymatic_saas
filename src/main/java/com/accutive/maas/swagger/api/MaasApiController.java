@@ -176,7 +176,7 @@ public class MaasApiController implements MaasApi {
         return new ResponseEntity<List<Job>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<AuditLogList>> getMAuditLogList() {
+    public ResponseEntity<List<AuditLogList>> getAuditLogList() {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {

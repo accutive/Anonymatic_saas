@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * MaskedData
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-22T18:25:26.083Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-28T23:16:06.253Z[GMT]")
 public class MaskedData   {
   @JsonProperty("replacement")
   private String replacement = null;
