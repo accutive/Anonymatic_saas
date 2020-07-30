@@ -50,7 +50,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T22:58:26.886Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-30T22:52:38.660Z[GMT]")
 @Api(value = "maas", description = "the maas API")
 public interface MaasApi {
 
@@ -389,7 +389,8 @@ public interface MaasApi {
         @ApiResponse(code = 400, message = "Bad request."),
         @ApiResponse(code = 401, message = "Authorization information is missing or invalid."),
         @ApiResponse(code = 403, message = "Forbidden by license or access control."),
-        @ApiResponse(code = 404, message = "Masking operator not found."),
+        @ApiResponse(code = 404, message = "Masking operator or mask link not found."),
+        @ApiResponse(code = 409, message = "Unable to generate unique replacement data"),
         @ApiResponse(code = 429, message = "Too Many Requests"),
         @ApiResponse(code = 500, message = "Unexpected server error.") })
     @RequestMapping(value = "/maas/masking/maskvalues",
@@ -420,7 +421,8 @@ public interface MaasApi {
         produces = { "application/text" }, 
         consumes = { "multipart/form-data" },
         method = RequestMethod.POST)
-    ResponseEntity<MaskFile> maskFile(@ApiParam(value = "") @RequestParam(value="maskingConfigID", required=false)  Integer maskingConfigID
+    ResponseEntity<MaskFile> maskFile(@ApiParam(value = "") @RequestParam(value="projectID", required=false)  Integer projectID
+,@ApiParam(value = "") @RequestParam(value="maskingConfigID", required=false)  Integer maskingConfigID
 ,@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile fileName
 );
 

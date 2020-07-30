@@ -214,7 +214,7 @@ public class MaasApiController implements MaasApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Project>>(objectMapper.readValue("[ {\n  \"latestReport\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",\n  \"name\" : \"name\",\n  \"lastRunDate\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"id\" : 5\n}, {\n  \"latestReport\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",\n  \"name\" : \"name\",\n  \"lastRunDate\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"id\" : 5\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                 return new ResponseEntity<List<Project>>(objectMapper.readValue("[ {\n  \"latestReport\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",\n  \"name\" : \"Demo Project\",\n  \"description\" : \"Demonstrates project setup\",\n  \"lastRunDate\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"maskingConfigs\" : [ {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  }, {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  } ],\n  \"id\" : 5\n}, {\n  \"latestReport\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",\n  \"name\" : \"Demo Project\",\n  \"description\" : \"Demonstrates project setup\",\n  \"lastRunDate\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"maskingConfigs\" : [ {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  }, {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  } ],\n  \"id\" : 5\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<List<Project>>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -283,9 +283,10 @@ public class MaasApiController implements MaasApi {
         return new ResponseEntity<MaskedData>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<MaskFile> maskFile(@ApiParam(value = "") @RequestParam(value="maskingConfigID", required=false)  Integer maskingConfigID
-,@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile fileName
-) {
+    public ResponseEntity<MaskFile> maskFile(@ApiParam(value = "") @RequestParam(value="projectID", required=false)  Integer projectID
+            ,@ApiParam(value = "") @RequestParam(value="maskingConfigID", required=false)  Integer maskingConfigID
+            ,@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile fileName
+    ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
