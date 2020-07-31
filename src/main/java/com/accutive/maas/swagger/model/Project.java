@@ -1,6 +1,7 @@
 package com.accutive.maas.swagger.model;
 
 import java.util.Objects;
+import com.accutive.maas.swagger.model.DiscoveryConfig;
 import com.accutive.maas.swagger.model.MaskingConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -18,7 +19,7 @@ import javax.validation.constraints.*;
  * Project
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-30T22:52:38.660Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-31T14:49:46.647Z[GMT]")
 public class Project   {
   @JsonProperty("id")
   private Long id = null;
@@ -38,6 +39,10 @@ public class Project   {
   @JsonProperty("maskingConfigs")
   @Valid
   private List<MaskingConfiguration> maskingConfigs = null;
+
+  @JsonProperty("discoverConfigs")
+  @Valid
+  private List<DiscoveryConfig> discoverConfigs = null;
 
   public Project id(Long id) {
     this.id = id;
@@ -163,6 +168,33 @@ public class Project   {
     this.maskingConfigs = maskingConfigs;
   }
 
+  public Project discoverConfigs(List<DiscoveryConfig> discoverConfigs) {
+    this.discoverConfigs = discoverConfigs;
+    return this;
+  }
+
+  public Project addDiscoverConfigsItem(DiscoveryConfig discoverConfigsItem) {
+    if (this.discoverConfigs == null) {
+      this.discoverConfigs = new ArrayList<DiscoveryConfig>();
+    }
+    this.discoverConfigs.add(discoverConfigsItem);
+    return this;
+  }
+
+  /**
+   * Get discoverConfigs
+   * @return discoverConfigs
+  **/
+  @ApiModelProperty(value = "")
+      @Valid
+    public List<DiscoveryConfig> getDiscoverConfigs() {
+    return discoverConfigs;
+  }
+
+  public void setDiscoverConfigs(List<DiscoveryConfig> discoverConfigs) {
+    this.discoverConfigs = discoverConfigs;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -178,12 +210,13 @@ public class Project   {
         Objects.equals(this.description, project.description) &&
         Objects.equals(this.lastRunDate, project.lastRunDate) &&
         Objects.equals(this.latestReport, project.latestReport) &&
-        Objects.equals(this.maskingConfigs, project.maskingConfigs);
+        Objects.equals(this.maskingConfigs, project.maskingConfigs) &&
+        Objects.equals(this.discoverConfigs, project.discoverConfigs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, lastRunDate, latestReport, maskingConfigs);
+    return Objects.hash(id, name, description, lastRunDate, latestReport, maskingConfigs, discoverConfigs);
   }
 
   @Override
@@ -197,6 +230,7 @@ public class Project   {
     sb.append("    lastRunDate: ").append(toIndentedString(lastRunDate)).append("\n");
     sb.append("    latestReport: ").append(toIndentedString(latestReport)).append("\n");
     sb.append("    maskingConfigs: ").append(toIndentedString(maskingConfigs)).append("\n");
+    sb.append("    discoverConfigs: ").append(toIndentedString(discoverConfigs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -10,11 +10,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Discovery
+ * DiscoveryConfig
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-29T22:58:26.886Z[GMT]")
-public class Discovery   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-31T14:49:46.647Z[GMT]")
+public class DiscoveryConfig   {
   @JsonProperty("id")
   private Long id = null;
 
@@ -24,7 +24,7 @@ public class Discovery   {
   @JsonProperty("description")
   private String description = null;
 
-  public Discovery id(Long id) {
+  public DiscoveryConfig id(Long id) {
     this.id = id;
     return this;
   }
@@ -43,7 +43,7 @@ public class Discovery   {
     this.id = id;
   }
 
-  public Discovery name(String name) {
+  public DiscoveryConfig name(String name) {
     this.name = name;
     return this;
   }
@@ -62,7 +62,7 @@ public class Discovery   {
     this.name = name;
   }
 
-  public Discovery description(String description) {
+  public DiscoveryConfig description(String description) {
     this.description = description;
     return this;
   }
@@ -90,10 +90,10 @@ public class Discovery   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Discovery discovery = (Discovery) o;
-    return Objects.equals(this.id, discovery.id) &&
-        Objects.equals(this.name, discovery.name) &&
-        Objects.equals(this.description, discovery.description);
+    DiscoveryConfig discoveryConfig = (DiscoveryConfig) o;
+    return Objects.equals(this.id, discoveryConfig.id) &&
+        Objects.equals(this.name, discoveryConfig.name) &&
+        Objects.equals(this.description, discoveryConfig.description);
   }
 
   @Override
@@ -104,7 +104,7 @@ public class Discovery   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Discovery {\n");
+    sb.append("class DiscoveryConfig {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

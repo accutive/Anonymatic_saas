@@ -10,11 +10,10 @@ import com.accutive.maas.swagger.model.AuditLogList;
 import com.accutive.maas.swagger.model.Body;
 import com.accutive.maas.swagger.model.Body1;
 import com.accutive.maas.swagger.model.Body2;
-import com.accutive.maas.swagger.model.Discovery;
+import com.accutive.maas.swagger.model.DiscoveryConfig;
 import com.accutive.maas.swagger.model.DiscoveryReport;
 import com.accutive.maas.swagger.model.InputData;
 import com.accutive.maas.swagger.model.Job;
-import com.accutive.maas.swagger.model.MaskFile;
 import com.accutive.maas.swagger.model.MaskValuesInput;
 import com.accutive.maas.swagger.model.MaskedData;
 import com.accutive.maas.swagger.model.MaskingConfiguration;
@@ -50,7 +49,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-30T22:52:38.660Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-31T14:49:46.647Z[GMT]")
 @Api(value = "maas", description = "the maas API")
 public interface MaasApi {
 
@@ -120,7 +119,7 @@ public interface MaasApi {
     ResponseEntity<AuditLog> getCurrentAuditLog();
 
 
-    @ApiOperation(value = "Get a list of discovery configurations", nickname = "getDiscoveries", notes = "", response = Discovery.class, responseContainer = "List", authorizations = {
+    @ApiOperation(value = "Get a list of discovery configurations", nickname = "getDiscoveries", notes = "", response = DiscoveryConfig.class, responseContainer = "List", authorizations = {
         @Authorization(value = "OAuth2", scopes = { 
             @AuthorizationScope(scope = "read", description = "Grants read access"),
             @AuthorizationScope(scope = "write", description = "Grants write access"),
@@ -129,7 +128,7 @@ public interface MaasApi {
 @Authorization(value = "OpenID"),
 @Authorization(value = "api_key")    }, tags={ "discovery", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = Discovery.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "successful operation", response = DiscoveryConfig.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "Bad request."),
         @ApiResponse(code = 401, message = "Authorization information is missing or invalid."),
         @ApiResponse(code = 403, message = "Forbidden by license or access control."),
@@ -138,7 +137,7 @@ public interface MaasApi {
     @RequestMapping(value = "/maas/discovery/list",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Discovery>> getDiscoveries();
+    ResponseEntity<List<DiscoveryConfig>> getDiscoveries();
 
 
     @ApiOperation(value = "Return latest discovery report", nickname = "getDiscoveryReport", notes = "", response = DiscoveryReport.class, authorizations = {
@@ -401,7 +400,7 @@ public interface MaasApi {
 );
 
 
-    @ApiOperation(value = "Upload and mask a file given the masking config id, and filename.", nickname = "maskFile", notes = "", response = MaskFile.class, authorizations = {
+    @ApiOperation(value = "Upload and mask a file given the masking config id, and filename.", nickname = "maskFile", notes = "", response = Resource.class, authorizations = {
         @Authorization(value = "OAuth2", scopes = { 
             @AuthorizationScope(scope = "read", description = "Grants read access"),
             @AuthorizationScope(scope = "write", description = "Grants write access"),
@@ -410,7 +409,7 @@ public interface MaasApi {
 @Authorization(value = "OpenID"),
 @Authorization(value = "api_key")    }, tags={ "masking", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = MaskFile.class),
+        @ApiResponse(code = 200, message = "successful operation", response = Resource.class),
         @ApiResponse(code = 400, message = "Bad request."),
         @ApiResponse(code = 401, message = "Authorization information is missing or invalid."),
         @ApiResponse(code = 403, message = "Forbidden by license or access control."),
@@ -418,10 +417,10 @@ public interface MaasApi {
         @ApiResponse(code = 429, message = "Too Many Requests"),
         @ApiResponse(code = 500, message = "Unexpected server error.") })
     @RequestMapping(value = "/maas/masking/maskfile",
-        produces = { "application/text" }, 
+        produces = { "application/octet-stream" }, 
         consumes = { "multipart/form-data" },
         method = RequestMethod.POST)
-    ResponseEntity<MaskFile> maskFile(@ApiParam(value = "") @RequestParam(value="projectID", required=false)  Integer projectID
+    ResponseEntity<Resource> maskFile(@ApiParam(value = "") @RequestParam(value="projectID", required=false)  Integer projectID
 ,@ApiParam(value = "") @RequestParam(value="maskingConfigID", required=false)  Integer maskingConfigID
 ,@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile fileName
 );
