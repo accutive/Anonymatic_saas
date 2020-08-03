@@ -79,18 +79,18 @@ public class MaasApiController implements MaasApi {
         return new ResponseEntity<AuditLog>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<Discovery>> getDiscoveries() {
+    public ResponseEntity<List<DiscoveryConfig>> getDiscoveries() {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Discovery>>(objectMapper.readValue("[ {\n  \"name\" : \"name\",\n  \"description\" : \"description\",\n  \"id\" : 7\n}, {\n  \"name\" : \"name\",\n  \"description\" : \"description\",\n  \"id\" : 7\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<DiscoveryConfig>>(objectMapper.readValue("[ {\n  \"name\" : \"name\",\n  \"description\" : \"description\",\n  \"id\" : 7\n}, {\n  \"name\" : \"name\",\n  \"description\" : \"description\",\n  \"id\" : 7\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Discovery>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<List<DiscoveryConfig>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<List<Discovery>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<DiscoveryConfig>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     public ResponseEntity<DiscoveryReport> getDiscoveryReport(@ApiParam(value = "ID of the discovery config",required=true) @PathVariable("discoveryID") Integer discoveryID
@@ -214,7 +214,10 @@ public class MaasApiController implements MaasApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Project>>(objectMapper.readValue("[ {\n  \"latestReport\" : \"a26d3370-d4e0-11ea-87d0-0242ac130003\",\n  \"name\" : \"Test UAT Masking\",\n  \"lastRunDate\" : \"2020-06-21T09:56:07.000+00:00\",\n  \"id\" : 1\n}, {\n  \"latestReport\" : \"08f2ab91-43c8-41a4-a2f0-80a8698a7bc3\",\n  \"name\" : \"Production Masking\",\n  \"lastRunDate\" : \"2020-07-02T10:26:14.000+00:00\",\n  \"id\" : 2\n} ]", List.class), HttpStatus.OK);
+                return new ResponseEntity<List<Project>>(objectMapper.readValue("[ {\n  \"latestReport\" : \"a26d3370-d4e0-11ea-87d0-0242ac130003\",\n  \"discoverConfigs\" : [ {\n    \"name\" : \"Discovery1\",\n    \"description\" : \"Testing Discovery\",\n    \"id\" : 1\n  }, {\n    \"name\" : \"name\",\n    \"description\" : \"description\",\n    \"id\" : 7\n  } ],\n  \"name\" : \"Test UAT Masking\",\n  \"description\" : \"Testing masking on UAT\",\n  \"lastRunDate\" : \"2020-07-06T14:02:45.000+00:00\",\n  \"maskingConfigs\" : [ {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  }, {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  } ],\n  \"id\" : 5\n}, {\n  \"latestReport\" : \"a26d3370-d4e0-11ea-87d0-0242ac130003\",\n  \"discoverConfigs\" : [ {\n    \"name\" : \"name\",\n    \"description\" : \"description\",\n    \"id\" : 7\n  }, {\n    \"name\" : \"name\",\n    \"description\" : \"description\",\n    \"id\" : 7\n  } ],\n  \"name\" : \"Demo Project\",\n  \"description\" : \"Demonstrates project setup\",\n  \"lastRunDate\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"maskingConfigs\" : [ {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  }, {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  } ],\n  \"id\" : 5\n} ]", List.class), HttpStatus.OK);
+
+                //return new ResponseEntity<List<Project>>(objectMapper.readValue("[ {\n  \"latestReport\" : \"a26d3370-d4e0-11ea-87d0-0242ac130003\",\n  \"name\" : \"Test UAT Masking\",\n  \"lastRunDate\" : \"2020-06-21T09:56:07.000+00:00\",\n  \"id\" : 1\n}, {\n  \"latestReport\" : \"08f2ab91-43c8-41a4-a2f0-80a8698a7bc3\",\n  \"name\" : \"Production Masking\",\n  \"lastRunDate\" : \"2020-07-02T10:26:14.000+00:00\",\n  \"id\" : 2\n} ]", List.class), HttpStatus.OK);
+                //return new ResponseEntity<List<Project>>(objectMapper.readValue("[ {\n  \"latestReport\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",\n  \"discoverConfigs\" : [ {\n    \"name\" : \"name\",\n    \"description\" : \"description\",\n    \"id\" : 7\n  }, {\n    \"name\" : \"name\",\n    \"description\" : \"description\",\n    \"id\" : 7\n  } ],\n  \"name\" : \"Demo Project\",\n  \"description\" : \"Demonstrates project setup\",\n  \"lastRunDate\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"maskingConfigs\" : [ {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  }, {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  } ],\n  \"id\" : 5\n}, {\n  \"latestReport\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",\n  \"discoverConfigs\" : [ {\n    \"name\" : \"name\",\n    \"description\" : \"description\",\n    \"id\" : 7\n  }, {\n    \"name\" : \"name\",\n    \"description\" : \"description\",\n    \"id\" : 7\n  } ],\n  \"name\" : \"Demo Project\",\n  \"description\" : \"Demonstrates project setup\",\n  \"lastRunDate\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"maskingConfigs\" : [ {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  }, {\n    \"name\" : \"My Masking Config\",\n    \"description\" : \"First atttempt at building a masking config\",\n    \"id\" : 4,\n    \"properties\" : [ \"properties\", \"properties\" ]\n  } ],\n  \"id\" : 5\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<List<Project>>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -229,7 +232,9 @@ public class MaasApiController implements MaasApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                if(projectReportID.equals("a26d3370-d4e0-11ea-87d0-0242ac130003")) {
+                UUID report1UUID = UUID.fromString("a26d3370-d4e0-11ea-87d0-0242ac130003");
+                UUID report2UUID = UUID.fromString("08f2ab91-43c8-41a4-a2f0-80a8698a7bc3");
+                if(projectReportID.equals(report1UUID)) {
                     String retVal = "{\n  \"stats\" : "
                             + "[ {\n"
                             + "    \"completedTasks\" : 1,\n"
@@ -490,7 +495,7 @@ public class MaasApiController implements MaasApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<MaskedData>(objectMapper.readValue("{\n  \"maskedData\" : [ \"masked\", \"values\" ]\n}", MaskedData.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<MaskedData>(objectMapper.readValue("{\n  \"maskedData\" : [ \"masked\", \"values\" ]\n}", MaskedData.class), HttpStatus.OK);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<MaskedData>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -500,21 +505,23 @@ public class MaasApiController implements MaasApi {
         return new ResponseEntity<MaskedData>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<MaskFile> maskFile(@ApiParam(value = "") @RequestParam(value="maskingConfigID", required=false)  Integer maskingConfigID
+    public ResponseEntity<Resource> maskFile(@ApiParam(value = "") @RequestParam(value="projectID", required=false)  Integer projectID
+,@ApiParam(value = "") @RequestParam(value="maskingConfigID", required=false)  Integer maskingConfigID
 ,@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile fileName
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<MaskFile>(objectMapper.readValue("{\n  \"fileName\" : \"\"\n}", MaskFile.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<Resource>(objectMapper.readValue("\"\"", Resource.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<MaskFile>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<Resource>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<MaskFile>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<Resource>(HttpStatus.NOT_IMPLEMENTED);
     }
+
 
     public ResponseEntity<RunJob> runDiscoveryJob(@ApiParam(value = "ID of the discovery config",required=true) @PathVariable("discoveryID") Integer discoveryID
 ,@ApiParam(value = ""  )  @Valid @RequestBody Body2 body
