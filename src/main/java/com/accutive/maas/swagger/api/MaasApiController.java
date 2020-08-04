@@ -11,10 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-22T18:25:26.083Z[GMT]")
 @Controller
 public class MaasApiController implements MaasApi {
@@ -55,7 +52,73 @@ public class MaasApiController implements MaasApi {
         }
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<AuditLog>(objectMapper.readValue("{\n  \"filename\" : \"" + filename + "\",\n  \"log\" : [ {\n    \"logMessage\" : \"logMessage1\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"1.2.3.4\"\n  }, {\n    \"logMessage\" : \"logMessage2\",\n    \"user\" : \"user2\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"4.3.2.1\"\n  } ],\n  \"isValid\" : true\n}", AuditLog.class), HttpStatus.OK);
+                if("system_audit_2020-05-28_04-24-32".equalsIgnoreCase(filename)) {
+                    String retVal = "{\n"
+                            + "  \"filename\" : \"system_audit_2020-05-28_04-24-32.log\",\n"
+                            + "  \"log\" : ["
+                            + "  {\n"
+                            + "    \"logMessage\" : \"No license installed\",\n"
+                            + "    \"user\" : \"system-process\",\n"
+                            + "    \"timestamp\" : \"2020-05-28T04:25:18.000+00:00\",\n"
+                            + "    \"remoteIpAddress\" : \"192.168.0.3\"\n"
+                            + "  },"
+                            + "  {\n"
+                            + "    \"logMessage\" : \"EDM Server startup\",\n"
+                            + "    \"user\" : \"system-process\",\n"
+                            + "    \"timestamp\" : \"2020-05-28T04:25:18.000+00:00\",\n"
+                            + "    \"remoteIpAddress\" : \"192.168.0.3\"\n"
+                            + "  },"
+                            + "  {\n"
+                            + "    \"logMessage\" : \"DATABASE OBJECT : UPDATED: admin\",\n"
+                            + "    \"user\" : \"system-process\",\n"
+                            + "    \"timestamp\" : \"2020-05-28T04:25:49.000+00:00\",\n"
+                            + "    \"remoteIpAddress\" : \"192.168.0.3\"\n"
+                            + "  },"
+                            + "  {\n"
+                            + "    \"logMessage\" : \"AUTHENTICATION_SUCCESS\",\n"
+                            + "    \"user\" : \"admin\",\n"
+                            + "    \"timestamp\" : \"2020-05-28T04:25:49.000+00:00\",\n"
+                            + "    \"remoteIpAddress\" : \"{details=com.accutive.edm.server.app.security.CustomWebAuthenticationDetails@43458: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 6435FD03C5AE95A870293FB92F619909: ServerUrls: localhost; }\"\n"
+                            + "  },"
+                            + "  {\n"
+                            + "    \"logMessage\" : \"DATABASE OBJECT : UPDATED: admin\",\n"
+                            + "    \"user\" : \"system-process\",\n"
+                            + "    \"timestamp\" : \"2020-05-28T04:26:02.000+00:00\",\n"
+                            + "    \"remoteIpAddress\" : \"0:0:0:0:0:0:0:1\"\n"
+                            + "  },"
+                            + "  {\n"
+                            + "    \"logMessage\" : \"Accutive License Declaration  Product licensed: ADM Licensed to: Accutive (accutive@accutive.com)  Server URL(s): [localhost, 127.0.0.1, ::1] License type: LIMITED Valid from: 11-Dec-2019 Valid through: 08-Dec-2020 Entitlements for this license:  Type: Annual Subtype: License Feature: Accutive Data Discovery Count: 1000 Valid from: 09-Dec-2019 Valid through: 08-Dec-2020 Type: Annual Subtype: License Feature: Accutive Data Masking Count: 1000 Valid from: 09-Dec-2019 Valid through: 08-Dec-2020 Type: Any Database Subtype: Database Feature: Accutive Data Discovery Count: 1000 Valid from: 09-Dec-2019 Valid through: 08-Dec-2020 Type: Any Database Subtype: Database Feature: Accutive Data Masking Count: 1000 Valid from: 09-Dec-2019 Valid through: 08-Dec-2020\",\n"
+                            + "    \"user\" : \"admin\",\n"
+                            + "    \"timestamp\" : \"2020-05-28T04:26:19.000+00:00\",\n"
+                            + "    \"remoteIpAddress\" : \"0:0:0:0:0:0:0:1\"\n"
+                            + "  },"
+//                        + "  {\n"
+//                        + "    \"logMessage\" : \"DATABASE OBJECT : UPDATED: ApplicationSettings(id=1, version=2, licenseUseage={\"featureUseCounts\":{\"AccutiveDataMasking:AnyDatabase:Database\":0,\"AccutiveDataDiscovery:AnyDatabase:Database\":0,\"AccutiveDataDiscovery:Annual:License\":0,\"AccutiveDataMasking:Annual:License\":0}}, keyName=DEFAULT_AES, forgotpasswordSubject=Password reset request, forgotpasswordSignature=https://accutive.com, maxQueuedProjects=6, submitTimeoutSeconds=10, maxParallelThreads=4, maxConcurrentSize=10, maxConcurrentBatches=4, batchSizeRows=1000, tablesPerProcessor=4, idleSaveDelay=15s, idleCloseDelay=10m, accountLockType=delay, maxFailedLogins=3, delayTimeSeconds=60, installVersion=2019-07, dbVersion=2020/2 GA)\",\n"
+//                        + "    \"user\" : \"admin\",\n"
+//                        + "    \"timestamp\" : \"2020-05-28T04:26:19.000+00:00\",\n"
+//                        + "    \"remoteIpAddress\" : \"0:0:0:0:0:0:0:1\"\n"
+//                        + "  },"
+                            + "  {\n"
+                            + "    \"logMessage\" : \"DATABASE OBJECT : UPDATED: admin\",\n"
+                            + "    \"user\" : \"admin\",\n"
+                            + "    \"timestamp\" : \"2020-05-28T04:26:37.000+00:00\",\n"
+                            + "    \"remoteIpAddress\" : \"192.168.0.3\"\n"
+                            + "  },"
+                            + "  {\n"
+                            + "    \"logMessage\" : \"AUTHENTICATION_SUCCESS\",\n"
+                            + "    \"user\" : \"admin\",\n"
+                            + "    \"timestamp\" : \"2020-05-28T04:26:37.000+00:00\",\n"
+                            + "    \"remoteIpAddress\" : \"{details=com.accutive.edm.server.app.security.CustomWebAuthenticationDetails@64e84: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 9EA0D6E0CD6DE2AFD674A37B12181E31: ServerUrls: localhost; }\"\n"
+                            + "  }"
+                            + " ],\n"
+                            + " \"isValid\" : true\n"
+                            + "}";
+
+                    return new ResponseEntity<AuditLog>(objectMapper.readValue(retVal, AuditLog.class), HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<AuditLog>(HttpStatus.NOT_FOUND);
+                }
+                //return new ResponseEntity<AuditLog>(objectMapper.readValue("{\n  \"filename\" : \"" + filename + "\",\n  \"log\" : [ {\n    \"logMessage\" : \"logMessage1\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"1.2.3.4\"\n  }, {\n    \"logMessage\" : \"logMessage2\",\n    \"user\" : \"user2\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"4.3.2.1\"\n  } ],\n  \"isValid\" : true\n}", AuditLog.class), HttpStatus.OK);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<AuditLog>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -69,7 +132,70 @@ public class MaasApiController implements MaasApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<AuditLog>(objectMapper.readValue("{\n  \"filename\" : \"currentlog\",\n  \"log\" : [ {\n    \"logMessage\" : \"logMessage1\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"1.2.3.4\"\n  }, {\n    \"logMessage\" : \"logMessage2\",\n    \"user\" : \"user2\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"4.3.2.1\"\n  } ],\n  \"isValid\" : true\n}", AuditLog.class), HttpStatus.OK);
+                String retVal = "{\n"
+                        + "  \"filename\" : \"system_audit_2020-05-28_04-24-32.log\",\n"
+                        + "  \"log\" : ["
+                        + "  {\n"
+                        + "    \"logMessage\" : \"No license installed\",\n"
+                        + "    \"user\" : \"system-process\",\n"
+                        + "    \"timestamp\" : \"2020-05-28T04:25:18.000+00:00\",\n"
+                        + "    \"remoteIpAddress\" : \"192.168.0.3\"\n"
+                        + "  },"
+                        + "  {\n"
+                        + "    \"logMessage\" : \"EDM Server startup\",\n"
+                        + "    \"user\" : \"system-process\",\n"
+                        + "    \"timestamp\" : \"2020-05-28T04:25:18.000+00:00\",\n"
+                        + "    \"remoteIpAddress\" : \"192.168.0.3\"\n"
+                        + "  },"
+                        + "  {\n"
+                        + "    \"logMessage\" : \"DATABASE OBJECT : UPDATED: admin\",\n"
+                        + "    \"user\" : \"system-process\",\n"
+                        + "    \"timestamp\" : \"2020-05-28T04:25:49.000+00:00\",\n"
+                        + "    \"remoteIpAddress\" : \"192.168.0.3\"\n"
+                        + "  },"
+                        + "  {\n"
+                        + "    \"logMessage\" : \"AUTHENTICATION_SUCCESS\",\n"
+                        + "    \"user\" : \"admin\",\n"
+                        + "    \"timestamp\" : \"2020-05-28T04:25:49.000+00:00\",\n"
+                        + "    \"remoteIpAddress\" : \"{details=com.accutive.edm.server.app.security.CustomWebAuthenticationDetails@43458: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 6435FD03C5AE95A870293FB92F619909: ServerUrls: localhost; }\"\n"
+                        + "  },"
+                        + "  {\n"
+                        + "    \"logMessage\" : \"DATABASE OBJECT : UPDATED: admin\",\n"
+                        + "    \"user\" : \"system-process\",\n"
+                        + "    \"timestamp\" : \"2020-05-28T04:26:02.000+00:00\",\n"
+                        + "    \"remoteIpAddress\" : \"0:0:0:0:0:0:0:1\"\n"
+                        + "  },"
+                        + "  {\n"
+                        + "    \"logMessage\" : \"Accutive License Declaration  Product licensed: ADM Licensed to: Accutive (accutive@accutive.com)  Server URL(s): [localhost, 127.0.0.1, ::1] License type: LIMITED Valid from: 11-Dec-2019 Valid through: 08-Dec-2020 Entitlements for this license:  Type: Annual Subtype: License Feature: Accutive Data Discovery Count: 1000 Valid from: 09-Dec-2019 Valid through: 08-Dec-2020 Type: Annual Subtype: License Feature: Accutive Data Masking Count: 1000 Valid from: 09-Dec-2019 Valid through: 08-Dec-2020 Type: Any Database Subtype: Database Feature: Accutive Data Discovery Count: 1000 Valid from: 09-Dec-2019 Valid through: 08-Dec-2020 Type: Any Database Subtype: Database Feature: Accutive Data Masking Count: 1000 Valid from: 09-Dec-2019 Valid through: 08-Dec-2020\",\n"
+                        + "    \"user\" : \"admin\",\n"
+                        + "    \"timestamp\" : \"2020-05-28T04:26:19.000+00:00\",\n"
+                        + "    \"remoteIpAddress\" : \"0:0:0:0:0:0:0:1\"\n"
+                        + "  },"
+//                        + "  {\n"
+//                        + "    \"logMessage\" : \"DATABASE OBJECT : UPDATED: ApplicationSettings(id=1, version=2, licenseUseage={\"featureUseCounts\":{\"AccutiveDataMasking:AnyDatabase:Database\":0,\"AccutiveDataDiscovery:AnyDatabase:Database\":0,\"AccutiveDataDiscovery:Annual:License\":0,\"AccutiveDataMasking:Annual:License\":0}}, keyName=DEFAULT_AES, forgotpasswordSubject=Password reset request, forgotpasswordSignature=https://accutive.com, maxQueuedProjects=6, submitTimeoutSeconds=10, maxParallelThreads=4, maxConcurrentSize=10, maxConcurrentBatches=4, batchSizeRows=1000, tablesPerProcessor=4, idleSaveDelay=15s, idleCloseDelay=10m, accountLockType=delay, maxFailedLogins=3, delayTimeSeconds=60, installVersion=2019-07, dbVersion=2020/2 GA)\",\n"
+//                        + "    \"user\" : \"admin\",\n"
+//                        + "    \"timestamp\" : \"2020-05-28T04:26:19.000+00:00\",\n"
+//                        + "    \"remoteIpAddress\" : \"0:0:0:0:0:0:0:1\"\n"
+//                        + "  },"
+                        + "  {\n"
+                        + "    \"logMessage\" : \"DATABASE OBJECT : UPDATED: admin\",\n"
+                        + "    \"user\" : \"admin\",\n"
+                        + "    \"timestamp\" : \"2020-05-28T04:26:37.000+00:00\",\n"
+                        + "    \"remoteIpAddress\" : \"192.168.0.3\"\n"
+                        + "  },"
+                        + "  {\n"
+                        + "    \"logMessage\" : \"AUTHENTICATION_SUCCESS\",\n"
+                        + "    \"user\" : \"admin\",\n"
+                        + "    \"timestamp\" : \"2020-05-28T04:26:37.000+00:00\",\n"
+                        + "    \"remoteIpAddress\" : \"{details=com.accutive.edm.server.app.security.CustomWebAuthenticationDetails@64e84: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 9EA0D6E0CD6DE2AFD674A37B12181E31: ServerUrls: localhost; }\"\n"
+                        + "  }"
+                        + " ],\n"
+                        + " \"isValid\" : true\n"
+                        + "}";
+
+                return new ResponseEntity<AuditLog>(objectMapper.readValue(retVal, AuditLog.class), HttpStatus.OK);
+
+                //return new ResponseEntity<AuditLog>(objectMapper.readValue("{\n  \"filename\" : \"currentlog\",\n  \"log\" : [ {\n    \"logMessage\" : \"logMessage1\",\n    \"user\" : \"user\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"1.2.3.4\"\n  }, {\n    \"logMessage\" : \"logMessage2\",\n    \"user\" : \"user2\",\n    \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\",\n    \"remoteIpAddress\" : \"4.3.2.1\"\n  } ],\n  \"isValid\" : true\n}", AuditLog.class), HttpStatus.OK);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<AuditLog>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -339,11 +465,8 @@ public class MaasApiController implements MaasApi {
         if (accept != null && accept.contains("application/json")) {
             try {
                 String retVal = "[ {\n"
-                        + "  \"filename\" : \"system_audit_2020-07-06_14-02_25.log\",\n"
-                        + "  \"timestamp\" : \"2020-07-06T14:02:25.000+00:00\"\n"
-                        + "}, {\n"
-                        + "  \"filename\" : \"system_audit_2020-07-07_11-21_25.log\",\n"
-                        + "  \"timestamp\" : \"2020-07-07T11:21:25.000+00:00\"\n"
+                        + "  \"filename\" : \"system_audit_2020-05-28_04-24-32.log\",\n"
+                        + "  \"timestamp\" : \"2020-05-06T04:24:32.000+00:00\"\n"
                         + "} ]";
                 return new ResponseEntity<List<AuditLogList>>(objectMapper.readValue(retVal, List.class), HttpStatus.OK);
 
