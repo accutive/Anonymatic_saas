@@ -5,49 +5,23 @@
  */
 package com.accutive.maas.swagger.api;
 
-import com.accutive.maas.swagger.model.AuditLog;
-import com.accutive.maas.swagger.model.AuditLogList;
-import com.accutive.maas.swagger.model.Body;
-import com.accutive.maas.swagger.model.Body1;
-import com.accutive.maas.swagger.model.Body2;
-import com.accutive.maas.swagger.model.DiscoveryConfig;
-import com.accutive.maas.swagger.model.DiscoveryReport;
-import com.accutive.maas.swagger.model.InputData;
-import com.accutive.maas.swagger.model.Job;
-import com.accutive.maas.swagger.model.MaskValuesInput;
-import com.accutive.maas.swagger.model.MaskedData;
-import com.accutive.maas.swagger.model.MaskingConfiguration;
-import com.accutive.maas.swagger.model.MaskingOperation;
-import com.accutive.maas.swagger.model.Masklink;
-import com.accutive.maas.swagger.model.MatchFieldNames;
-import com.accutive.maas.swagger.model.MatchFieldValues;
-import com.accutive.maas.swagger.model.Project;
-import com.accutive.maas.swagger.model.ProjectReport;
-import com.accutive.maas.swagger.model.ProjectReportList;
+import com.accutive.maas.swagger.model.*;
 import org.springframework.core.io.Resource;
-import com.accutive.maas.swagger.model.RunJob;
-import com.accutive.maas.swagger.model.ScanGroup;
-import com.accutive.maas.swagger.model.ServerRestart;
-import com.accutive.maas.swagger.model.ServerStop;
-import com.accutive.maas.swagger.model.StopProject;
+
 import java.util.UUID;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.CookieValue;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-07-31T14:49:46.647Z[GMT]")
 @Api(value = "maas", description = "the maas API")
@@ -446,7 +420,7 @@ public interface MaasApi {
         consumes = { "application/json" },
         method = RequestMethod.POST)
     ResponseEntity<RunJob> runDiscoveryJob(@ApiParam(value = "ID of the discovery config",required=true) @PathVariable("discoveryID") Integer discoveryID
-,@ApiParam(value = ""  )  @Valid @RequestBody Body2 body
+,@ApiParam(value = "A JSON object containing optional callback URL information"  )  @Valid @RequestBody Body body
 );
 
 
@@ -470,7 +444,7 @@ public interface MaasApi {
         consumes = { "application/json" },
         method = RequestMethod.POST)
     ResponseEntity<RunJob> runJobByJobID(@ApiParam(value = "ID of the job to run.",required=true) @PathVariable("jobID") Integer jobID
-,@ApiParam(value = "A JSON object containing optional callback URL information"  )  @Valid @RequestBody Object body
+,@ApiParam(value = "A JSON object containing optional callback URL information"  )  @Valid @RequestBody Body body
 );
 
 
@@ -489,9 +463,10 @@ public interface MaasApi {
         @ApiResponse(code = 404, message = "A Project with the specified ID was not found."),
         @ApiResponse(code = 500, message = "Unexpected server error.") })
     @RequestMapping(value = "/maas/projects/run/{projectID}",
+        produces = { "application/json" },
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> runProjectByProjectID(@ApiParam(value = "ID of the project to run.",required=true) @PathVariable("projectID") Integer projectID
+    ResponseEntity<RunJob> runProjectByProjectID(@ApiParam(value = "ID of the project to run.",required=true) @PathVariable("projectID") Integer projectID
 ,@ApiParam(value = ""  )  @Valid @RequestBody Body body
 );
 
@@ -512,7 +487,7 @@ public interface MaasApi {
         @ApiResponse(code = 404, message = "Service not found."),
         @ApiResponse(code = 500, message = "Unexpected server error.") })
     @RequestMapping(value = "/maas/admin/server/restart",
-        produces = { "application/text" }, 
+        produces = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<ServerRestart> serverRestart();
 
@@ -533,7 +508,7 @@ public interface MaasApi {
         @ApiResponse(code = 404, message = "Service not found."),
         @ApiResponse(code = 500, message = "Unexpected server error.") })
     @RequestMapping(value = "/maas/admin/server/stop",
-        produces = { "application/text" }, 
+        produces = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<ServerStop> serverStop();
 
@@ -575,10 +550,11 @@ public interface MaasApi {
         @ApiResponse(code = 404, message = "A Project with the specified ID was not found."),
         @ApiResponse(code = 500, message = "Unexpected server error.") })
     @RequestMapping(value = "/maas/projects/validate/{projectID}",
+        produces = { "application/json" },
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> validateProjectByProjectID(@ApiParam(value = "" ,required=true )  @Valid @RequestBody Body1 body
-,@ApiParam(value = "ID of the project to validate.",required=true) @PathVariable("projectID") Integer projectID
+    ResponseEntity<RunJob> validateProjectByProjectID(@ApiParam(value = "ID of the project to validate.",required=true) @PathVariable("projectID") Integer projectID
+,@ApiParam(value = ""  )  @Valid @RequestBody Body body
 );
 
 }
